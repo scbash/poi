@@ -68,17 +68,18 @@ exports.apply = (
       .use(require('fork-ts-checker-webpack-plugin'), [
         Object.assign(
           {
-            vue: true,
+            typescript: {
+              extensions: {
+                vue: true
+              }
+            },
             formatter: 'codeframe',
-            // https://github.com/TypeStrong/ts-loader#happypackmode-boolean-defaultfalse
-            checkSyntacticErrors: api.config.parallel
           },
           tscheckerOptions,
           {
-            tsconfig: configFile,
-            tslint:
-              lintOnSave &&
-              Boolean(api.configLoader.resolve({ files: ['tslint.json'] }))
+            typescript: {
+              tsconfig: configFile,
+	    }
           }
         )
       ])
